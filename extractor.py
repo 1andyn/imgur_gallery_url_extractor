@@ -50,8 +50,8 @@ class GalleryParser(HTMLParser):
                             if name == 'src':
                                 if not self.link_retrieved:
                                     self.link_retrieved = True
-                                    print(clean_url(value))
-                                    self.file.write(clean_url(value) + '\n')
+                                    print(gallery_all_fix(clean_url(value)))
+                                    self.file.write(gallery_all_fix(clean_url(value)) + '\n')
                elif tag == 'div':
                    for name, value in attrs:
                        if name == 'class' and value == 'post':
@@ -81,6 +81,11 @@ class GalleryParser(HTMLParser):
 
 def clean_url(Url):
     return Url[2:]
+
+def gallery_all_fix(Url):
+    # the url adds a "b" to the end of the image hash value to shrink it, remove the b to get full size image
+    return Url[:-5] + Url[-4:]
+
 
 # Check for proper arguments and syntax
 if len(sys.argv) < 2:
