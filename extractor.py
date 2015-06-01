@@ -56,7 +56,7 @@ class GalleryParser(HTMLParser):
                    for name, value in attrs:
                        if name == 'class' and value == 'post':
                            self.link_retrieved = False
-                           self.inside_image_div = 1 # There are Seven Divs that need to be escaped
+                           self.inside_image_div = 1 # There is one that need to be escaped
         else:
             if tag == 'div':
                 for name, value in attrs:
